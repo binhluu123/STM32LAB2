@@ -95,13 +95,46 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(1, 100);
-  setTimer(2, 100);
-  setTimer(3, 100);
+  setTimer(TIMER_LED_MULTIPLEXING, 100);
+  setTimer(TIMER_DOT_BLINK       , 100);
+  setTimer(TIMER_LED_BLINKY      , 100);
+  setTimer(TIMER_CLOCK           , 100);
   LED7_OFF();
   while (1)
   {
+	  if(isTimerExpired(TIMER_CLOCK)){
+	  		second++;
+	  		if(second >= 60){
+	  			second = 0;
+	  			minute++;
+	  		}
+	  		if(minute >= 60){
+	  		    minute = 0;
+	  		    hour++;
+	  	    }
+	  		if(hour >= 24){
+	  			hour = 0;
+	  		}
+	  		setTimer(TIMER_CLOCK,100);
+	  }
 
+      if(isTimerExpired(TIMER_DOT_BLINK)) {
+      		Dot_state();
+      		setTimer(TIMER_DOT_BLINK, 100);
+      }
+
+      if(isTimerExpired(TIMER_LED_BLINKY)) {
+      		LED_BLINKY();
+      		setTimer(TIMER_LED_BLINKY, 100);
+      }
+
+      updateClockBuffer();
+
+      if(isTimerExpired(TIMER_LED_MULTIPLEXING)) {
+         	update7SEG(index_led++);
+            if(index_led >= MAX_LED) index_led = 0;
+            setTimer(TIMER_LED_MULTIPLEXING, 25);
+      }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -233,16 +266,6 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
  void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	runTimer();
-	if(isTimerExpired(1)) {
-		update7SEG(index_led++);
-		if(index_led >= MAX_LED) index_led = 0;
-	}
-	if(isTimerExpired(2)) {
-		Dot_state(2);
-	}
-	if(isTimerExpired(3)) {
-		LED_BLINKY();
-	}
   }
 /* USER CODE END 4 */
 

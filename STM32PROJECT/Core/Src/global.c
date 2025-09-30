@@ -6,7 +6,8 @@
  */
 #include "global.h"
 
-int led_buffer[4] = {1,2,3,0};
+int hour = 15, minute = 8, second = 50;
+int led_buffer[4] = {0,0,0,0};
 int index_led = 0;
 int MAX_LED = 4;
 
@@ -24,7 +25,6 @@ int segCode[10] = {
 };
 void LED_BLINKY(){
 	HAL_GPIO_TogglePin(LED_BLINKY_GPIO_Port, LED_BLINKY_Pin);
-	setTimer(3, 100);
 }
 void LED7_OFF(){
 	GPIOA->BSRR = LED_ALL;
@@ -49,32 +49,36 @@ void Enable(int index){
 }
 void Dot_state(){
 	HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-	setTimer(2, 100);
 }
 
-void Excute_Led7(int index, int flag, int timer){
+void Excute_Led7(int index){
 	Enable(index);
 	display7SEG(led_buffer[index]);
-	setTimer(flag,timer);
 }
 void update7SEG(int index){
 	if(index >= MAX_LED) index = 0;
     switch(index){
     case LED_1:
-    	Excute_Led7(index, 1, 25);
+    	Excute_Led7(index);
     	break;
     case LED_2:
-    	Excute_Led7(index, 1, 25);
+    	Excute_Led7(index);
        	break;
     case LED_3:
-    	Excute_Led7(index, 1, 25);
+    	Excute_Led7(index);
        	break;
     case LED_4:
-    	Excute_Led7(index, 1, 25);
+    	Excute_Led7(index);
        	break;
     default:
     	break;
     }
+}
+void updateClockBuffer(){
+	led_buffer[0] = hour / 10;
+	led_buffer[1] = hour % 10;
+	led_buffer[2] = minute / 10;
+	led_buffer[3] = minute % 10;
 }
 
 
