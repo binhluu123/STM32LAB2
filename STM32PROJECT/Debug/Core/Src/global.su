@@ -1,5 +1,7 @@
-global.c:23:6:LED7_OFF	4	static
-global.c:26:6:LED7_SEG	24	static
-global.c:37:6:display7SEG	8	static
-global.c:48:6:Enable	24	static
-global.c:56:6:Dot_state	8	static
+global.c:25:6:LED_BLINKY	8	static
+global.c:29:6:LED7_OFF	4	static
+global.c:32:6:display7SEG	24	static
+global.c:44:6:Enable	16	static
+global.c:50:6:Dot_state	8	static
+global.c:55:6:Excute_Led7	24	static
+global.c:60:6:update7SEG	16	static
