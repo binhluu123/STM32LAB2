@@ -33,9 +33,9 @@ void updateLEDMatrix(int index){
     if(index < 0 || index >= MAX_LED_MATRIX) return;
 
     HAL_GPIO_WritePin(GPIOA,
-        ENM0_Pin|ENM1_Pin|ENM2_Pin|ENM3_Pin|
-        ENM4_Pin|ENM5_Pin|ENM6_Pin|ENM7_Pin,
-        GPIO_PIN_SET);
+    ENM0_Pin|ENM1_Pin|ENM2_Pin|ENM3_Pin|
+    ENM4_Pin|ENM5_Pin|ENM6_Pin|ENM7_Pin,
+    GPIO_PIN_SET);
 
     uint8_t pattern = matrix_buffer[index];
 

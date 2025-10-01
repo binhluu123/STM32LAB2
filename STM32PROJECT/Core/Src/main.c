@@ -119,6 +119,7 @@ int main(void)
 	  		if(hour >= 24){
 	  			hour = 0;
 	  		}
+	  		updateClockBuffer();
 	  		setTimer(TIMER_CLOCK,100);
 	  }
 
@@ -132,8 +133,6 @@ int main(void)
       		setTimer(TIMER_LED_BLINKY, 100);
       }
 
-      updateClockBuffer();
-
       if(isTimerExpired(TIMER_LED_MULTIPLEXING)) {
          	update7SEG(index_led++);
             if(index_led >= MAX_LED) index_led = 0;
@@ -141,8 +140,8 @@ int main(void)
       }
 
       if(isTimerExpired(TIMER_SHIFT_MATRIX)){
-          shiftMatrixLeft();
-          setTimer(TIMER_SHIFT_MATRIX, 50);
+            shiftMatrixLeft();
+            setTimer(TIMER_SHIFT_MATRIX, 50);
       }
 
       if(isTimerExpired(TIMER_LED_MATRIX)){
