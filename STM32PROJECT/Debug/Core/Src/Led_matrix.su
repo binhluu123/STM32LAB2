@@ -1,2 +1,2 @@
-Led_matrix.c:29:6:shiftMatrixLeft	16	static
-Led_matrix.c:37:6:updateLEDMatrix	24	static
+Led_matrix.c:24:6:shiftMatrixLeft	16	static
+Led_matrix.c:32:6:updateLEDMatrix	24	static

@@ -14,10 +14,13 @@
 #define LED_4  3
 #define LED_ALL (EN0_Pin | EN1_Pin | EN2_Pin | EN3_Pin)
 
-#define TIMER_LED_MULTIPLEXING 1 // 25ms
-#define TIMER_DOT_BLINK        2 // 500ms
-#define TIMER_LED_BLINKY       3 // 1s
-#define TIMER_CLOCK            4 // 1s
+#define TIMER_LED_MULTIPLEXING 1
+#define TIMER_DOT_BLINK        2
+#define TIMER_LED_BLINKY       3
+#define TIMER_CLOCK            4
+#define TIMER_SHIFT_MATRIX     5
+#define TIMER_LED_MATRIX       6
+
 #include "software_timer.h"
 
 extern int segCode[10];

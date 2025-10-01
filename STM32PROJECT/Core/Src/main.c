@@ -96,13 +96,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  LED7_OFF();
+
   setTimer(TIMER_LED_MULTIPLEXING, 100);
   setTimer(TIMER_DOT_BLINK       , 100);
   setTimer(TIMER_LED_BLINKY      , 100);
   setTimer(TIMER_CLOCK           , 100);
-  LED7_OFF();
-  setTimer(5, 2);
-  setTimer(6, 2);
+  setTimer(TIMER_LED_MATRIX      , 2  );
+  setTimer(TIMER_SHIFT_MATRIX    , 2  );
   while (1)
   {
 	  if(isTimerExpired(TIMER_CLOCK)){
@@ -139,16 +140,16 @@ int main(void)
             setTimer(TIMER_LED_MULTIPLEXING, 25);
       }
 
-      if(isTimerExpired(6)){
+      if(isTimerExpired(TIMER_SHIFT_MATRIX)){
           shiftMatrixLeft();
-          setTimer(6, 50);
+          setTimer(TIMER_SHIFT_MATRIX, 50);
       }
 
-      if(isTimerExpired(5)){
+      if(isTimerExpired(TIMER_LED_MATRIX)){
             updateLEDMatrix(index_matrix);
             index_matrix++;
             if(index_matrix >= MAX_LED_MATRIX) index_matrix = 0;
-            setTimer(5, 1);
+            setTimer(TIMER_LED_MATRIX, 1);
       }
     /* USER CODE END WHILE */
 
